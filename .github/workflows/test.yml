@@ -13,3 +13,4 @@ jobs:
     with:
       package_name: dvla_vehicle_enquiry_service
       tests_path: tests
+    secrets: inherit
