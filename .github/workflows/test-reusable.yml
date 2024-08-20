@@ -1,0 +1,75 @@
+---
+name: Test
+
+on:
+  workflow_call:
+    inputs:
+      package_name:
+        description: 'The name of the package to test'
+        required: true
+        type: string
+      tests_path:
+        description: 'The path to the directory containing pytest tests'
+        required: true
+        type: string
+
+jobs:
+  ruff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - name: Setup python and restore poetry
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+          cache: "poetry"
+
+      - name: Lint with ruff
+        run: |
+          poetry install --with dev
+          poetry run ruff check ${{ inputs.package_name }} --output-format=github
+
+  mypy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - name: Setup python and restore poetry
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+          cache: "poetry"
+
+      - name: Type check with mypy
+        run: |
+          poetry install --with dev
+          poetry run mypy --strict ${{ inputs.package_name }}
+
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - name: Setup python and restore poetry
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+          cache: "poetry"
+
+      - name: Test with pytest
+        run: |
+          poetry install --with dev
+          poetry run pytest ${{ inputs.tests_path }}
+        env:
+          CI: true
+          TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
