@@ -1,7 +1,7 @@
 """Data models for the DVLA Vehicle Enquiry Service API"""
 
 from datetime import date
-from typing import Any, List, Optional, Union
+from typing import List, Optional, Union
 
 from pydantic import Field, field_validator
 from pydantic.dataclasses import dataclass
