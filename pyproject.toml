@@ -1,0 +1,33 @@
+[project]
+requires-python = ">=3.8"
+
+[tool.poetry]
+name = "dvla_vehicle_enquiry_service"
+version = "0.1.0"
+description = "Python SDK for DVLA Vehicle Enquiry Service API"
+authors = ["tigattack <10629864+tigattack@users.noreply.github.com>"]
+readme = "README.md"
+license = "MIT"
+packages = [
+    {include = "dvla_vehicle_enquiry_service"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+aiohttp = "^3.10.3"
+pydantic = "^2.8.2"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.11.1"
+ruff = "^0.6.1"
+pytest = "^8.3.2"
+pytest-asyncio = "^0.23.8"
+python-dateutil = "^2.9.0.post0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+disable_error_code = "import-untyped"
