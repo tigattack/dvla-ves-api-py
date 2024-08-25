@@ -1,5 +1,9 @@
 # DVLA Vehicle Enquiry Service Python SDK
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/tigattack/dvla-ves-api-py/test.yml?branch=main&style=for-the-badge&logo=github&label=test)
+![PyPI - Python Versions](https://img.shields.io/pypi/pyversions/dvla-vehicle-enquiry-service?style=for-the-badge&logo=python&link=https%3A%2F%2Fpypi.org%2Fproject%2Fdvla-vehicle-enquiry-service)
+![PyPI - Version](https://img.shields.io/pypi/v/dvla-vehicle-enquiry-service?style=for-the-badge&logo=python&link=https%3A%2F%2Fpypi.org%2Fproject%2Fdvla-vehicle-enquiry-service)
+
 `dvla_vehicle_enquiry_service` is a Python SDK that provides a simple interface for interacting with the DVLA (Driver and Vehicle Licensing Agency) Vehicle Enquiry Service API. It allows retrieval of detailed vehicle information based on the registration number, including tax status, MOT status, and more.
 
 ## Installation
