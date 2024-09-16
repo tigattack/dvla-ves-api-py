@@ -11,14 +11,13 @@ from .enums import MotStatus, TaxStatus
 
 @dataclass
 class ErrorDetail:
-    """
-    Represents an individual error detail returned by the API
+    """Represents an individual error detail returned by the API.
 
     Attributes:
-        title: The error title
-        status: The HTTP status code
-        code: The error code
-        detail: The error detail
+        title: The error title.
+        status: The HTTP status code.
+        code: The error code.
+        detail: The error detail.
     """
 
     title: str
@@ -29,11 +28,10 @@ class ErrorDetail:
 
 @dataclass
 class ErrorResponse:
-    """
-    Represents an error response from the API
+    """Represents an error response from the API.
 
     Attributes:
-        errors: A list of error details
+        errors: A list of error details.
     """
 
     errors: list[ErrorDetail] = Field(default_factory=list)
@@ -41,14 +39,13 @@ class ErrorResponse:
 
 @dataclass
 class Vehicle:
-    """
-    Represents a vehicle's details as retrieved from the DVLA Vehicle Enquiry Service API.
+    """Represents a vehicle's details as retrieved from the DVLA Vehicle Enquiry Service API.
 
     Attributes:
         registrationNumber: The registration number of the vehicle (required).
         taxStatus: The tax status of the vehicle.
-        taxDueDate: Date of tax liability, used in calculating licence information presented to the user.
-        artEndDate: Additional Rate of Tax End Date, format: YYYY-MM-DD.
+        taxDueDate: Date of tax liability, used in calculating licence information.
+        artEndDate: Additional Rate of Tax End Date.
         motStatus: The MOT status of the vehicle.
         motExpiryDate: The expiry date of the MOT.
         make: The make of the vehicle.
@@ -56,17 +53,17 @@ class Vehicle:
         monthOfFirstRegistration: Month of the first registration.
         yearOfManufacture: Year of manufacture of the vehicle.
         engineCapacity: Engine capacity in cubic centimetres.
-        co2Emissions: Carbon Dioxide emissions in grams per kilometre.
-        fuelType: The fuel type (method of propulsion) of the vehicle.
-        markedForExport: True if the vehicle has been export marked.
-        colour: The colour of the vehicle.
-        typeApproval: Vehicle Type Approval Category.
-        wheelplan: Vehicle wheel plan.
-        revenueWeight: Revenue weight in kilograms.
-        realDrivingEmissions: Real Driving Emissions value.
+        co2Emissions: CO2 emissions in grams per kilometre.
+        fuelType: The fuel type of the vehicle.
+        markedForExport: Whether the vehicle has been export marked.
+        colour: The vehicle's colour.
+        typeApproval: The vehicle's type approval category.
+        wheelplan: The vehicle's wheel plan.
+        revenueWeight: The vehicle's revenue weight.
+        realDrivingEmissions: The vehicle's Real Driving Emissions class.
         dateOfLastV5CIssued: Date of the last V5C issued.
-        euroStatus: Euro Status (Dealer / Customer Provided for new vehicles).
-        automatedVehicle: True if the vehicle is an Automated Vehicle (AV).
+        euroStatus: Euro Status of the vehicle.
+        automatedVehicle: Whether the vehicle is an Automated Vehicle (AV).
     """
 
     registrationNumber: str
@@ -96,6 +93,7 @@ class Vehicle:
         "monthOfFirstRegistration", "monthOfFirstDvlaRegistration", mode="before"
     )
     def parse_month(cls, value: Union[str, date]) -> Optional[date]:
+        """Parses a 'YYYY-MM' string format to a date with the first day of the month."""
         if value:
             if isinstance(value, date):
                 return value
