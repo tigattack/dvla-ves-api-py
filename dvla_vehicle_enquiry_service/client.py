@@ -23,7 +23,7 @@ class VehicleEnquiryAPI:
     async def _make_request(
         self, endpoint: str, data: dict[str, Any], correlation_id: Optional[str] = None
     ) -> Union[dict[str, Any], ErrorResponse]:
-        """Makes a request to the API and returns the response"""
+        """Makes a request to the API and returns the response."""
         headers = {"x-api-key": self.api_key, "Content-Type": "application/json"}
         if correlation_id:
             headers["X-Correlation-Id"] = correlation_id
@@ -63,7 +63,7 @@ class VehicleEnquiryAPI:
     async def get_vehicle(
         self, registration_number: str, correlation_id: Optional[str] = None
     ) -> Union[Vehicle, ErrorResponse]:
-        """Fetches vehicle details by registration number"""
+        """Fetches vehicle details."""
         data = {"registrationNumber": registration_number}
         response = await self._make_request(
             VEHICLE_BY_REGISTRATION, data, correlation_id
