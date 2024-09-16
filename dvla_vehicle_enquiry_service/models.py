@@ -1,7 +1,7 @@
 """Data models for the DVLA Vehicle Enquiry Service API"""
 
 from datetime import date
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 from pydantic import Field, field_validator
 from pydantic.dataclasses import dataclass
@@ -36,7 +36,7 @@ class ErrorResponse:
         errors: A list of error details
     """
 
-    errors: List[ErrorDetail] = Field(default_factory=list)
+    errors: list[ErrorDetail] = Field(default_factory=list)
 
 
 @dataclass

@@ -1,6 +1,6 @@
 """Client for DVLA Vehicle Enquiry Service API"""
 
-from typing import Any, Dict, Literal, Optional, Union
+from typing import Any, Literal, Optional, Union
 
 import aiohttp
 from pydantic import ValidationError
@@ -21,8 +21,8 @@ class VehicleEnquiryAPI:
         self.base_url = BASE_URLS[environment]
 
     async def _make_request(
-        self, endpoint: str, data: Dict[str, Any], correlation_id: Optional[str] = None
-    ) -> Union[Dict[str, Any], ErrorResponse]:
+        self, endpoint: str, data: dict[str, Any], correlation_id: Optional[str] = None
+    ) -> Union[dict[str, Any], ErrorResponse]:
         """Makes a request to the API and returns the response"""
         headers = {"x-api-key": self.api_key, "Content-Type": "application/json"}
         if correlation_id:
@@ -32,7 +32,7 @@ class VehicleEnquiryAPI:
             async with session.post(
                 f"{self.base_url}{endpoint}", json=data, headers=headers
             ) as response:
-                response_json: Dict[str, Any] = await response.json()
+                response_json: dict[str, Any] = await response.json()
                 if response.status == 200:
                     return response_json
                 else:
