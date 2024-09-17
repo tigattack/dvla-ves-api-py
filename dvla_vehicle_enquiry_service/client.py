@@ -58,7 +58,16 @@ class VehicleEnquiryAPI:
     async def get_vehicle(
         self, registration_number: str, correlation_id: Optional[str] = None
     ) -> VehicleResponse:
-        """Fetches vehicle details."""
+        """Fetches vehicle details.
+
+        Args:
+            registration_number: The vehicle registration number
+            correlation_id: The correlation ID to include in the request headers
+        Returns:
+            VehicleResponse
+        Raises:
+            VehicleEnquiryError
+        """
         data = {"registrationNumber": registration_number}
         response = await self._make_request(
             VEHICLE_BY_REGISTRATION, data, correlation_id
