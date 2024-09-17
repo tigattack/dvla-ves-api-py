@@ -69,11 +69,9 @@ class VehicleResponse:
         if value:
             if isinstance(value, date):
                 return value
-            else:
-                try:
-                    year = int(value.split("-")[0])
-                    month = int(value.split("-")[1])
-                    return date(year, month, 1)
-                except ValueError:
-                    raise ValueError(f"Invalid date format for 'YYYY-MM': {value}")
+            try:
+                year, month = map(int, value.split("-"))
+                return date(year, month, 1)
+            except ValueError:
+                raise ValueError(f"Invalid date format for 'YYYY-MM': {value}")
         return None
