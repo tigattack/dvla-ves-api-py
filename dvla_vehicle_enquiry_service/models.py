@@ -3,38 +3,10 @@
 from datetime import date
 from typing import Optional, Union
 
-from pydantic import Field, field_validator
+from pydantic import field_validator
 from pydantic.dataclasses import dataclass
 
 from .enums import MotStatus, TaxStatus
-
-
-@dataclass
-class ErrorDetail:
-    """Represents an individual error detail returned by the API.
-
-    Attributes:
-        title: The error title.
-        status: The HTTP status code.
-        code: The error code.
-        detail: The error detail.
-    """
-
-    title: str
-    status: Optional[str] = None
-    code: Optional[str] = None
-    detail: Optional[str] = None
-
-
-@dataclass
-class ErrorResponse:
-    """Represents an error response from the API.
-
-    Attributes:
-        errors: A list of error details.
-    """
-
-    errors: list[ErrorDetail] = Field(default_factory=list)
 
 
 @dataclass

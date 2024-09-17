@@ -1,12 +1,13 @@
 """Client for DVLA Vehicle Enquiry Service API"""
 
-from typing import Any, Literal, Optional, Union
+from typing import Any, Literal, Optional
 
 import aiohttp
 from pydantic import ValidationError
 
 from .api import BASE_URLS, VEHICLE_BY_REGISTRATION
-from .models import ErrorDetail, ErrorResponse, Vehicle
+from .errors import VehicleEnquiryError
+from .models import Vehicle
 
 
 class VehicleEnquiryAPI:
@@ -22,8 +23,8 @@ class VehicleEnquiryAPI:
 
     async def _make_request(
         self, endpoint: str, data: dict[str, Any], correlation_id: Optional[str] = None
-    ) -> Union[dict[str, Any], ErrorResponse]:
-        """Makes a request to the API and returns the response."""
+    ) -> dict[str, Any]:
+        """Makes a request to the API and raises errors for any non-200 status."""
         headers = {"x-api-key": self.api_key, "Content-Type": "application/json"}
         if correlation_id:
             headers["X-Correlation-Id"] = correlation_id
@@ -33,45 +34,39 @@ class VehicleEnquiryAPI:
                 f"{self.base_url}{endpoint}", json=data, headers=headers
             ) as response:
                 response_json: dict[str, Any] = await response.json()
+
                 if response.status == 200:
                     return response_json
-                else:
-                    if response_json.get("message"):
-                        return ErrorResponse(
-                            errors=[
-                                ErrorDetail(
-                                    status=str(response.status),
-                                    title=response_json["message"],
-                                )
-                            ]
-                        )
-                    elif response_json.get("errors"):
-                        return ErrorResponse(
-                            errors=[
-                                ErrorDetail(**error)
-                                for error in response_json.get("errors", [])
-                            ]
-                        )
-                    elif isinstance(response_json, list):
-                        return ErrorResponse(
-                            errors=[ErrorDetail(**error) for error in response_json]
-                        )
-                    raise ValueError(
-                        f"Unexpected error response format (HTTP {response.status}): {response_json}"
+
+                if response_json.get("message"):
+                    raise VehicleEnquiryError(
+                        status=response.status,
+                        title=response_json["message"],
                     )
+
+                if response_json.get("errors"):
+                    raise VehicleEnquiryError(
+                        status=response.status,
+                        title="Multiple errors",
+                        errors=[error for error in response_json.get("errors", [])],
+                    )
+
+        raise VehicleEnquiryError(
+            status=response.status, title="Unknown error during API request"
+        )
 
     async def get_vehicle(
         self, registration_number: str, correlation_id: Optional[str] = None
-    ) -> Union[Vehicle, ErrorResponse]:
+    ) -> Vehicle:
         """Fetches vehicle details."""
         data = {"registrationNumber": registration_number}
         response = await self._make_request(
             VEHICLE_BY_REGISTRATION, data, correlation_id
         )
 
-        if isinstance(response, dict):
-            try:
-                return Vehicle(**response)
-            except ValidationError as e:
-                raise ValueError(f"Invalid response format: {e}")
-        return response
+        try:
+            return Vehicle(**response)
+        except ValidationError as e:
+            raise VehicleEnquiryError(
+                title="Invalid response format", detail=str(e)
+            ) from e
