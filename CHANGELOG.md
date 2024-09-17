@@ -66,7 +66,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [`dcb7196`](https://github.com/tigattack/dvla-ves-api-py/commit/dcb7196450326bca2c746c1b30e98d039e2024eb) - bump version to 1.0.0 *(commit by [@tigattack](https://github.com/tigattack))*
 
 
-## [0.1.1] - 2024-09-17
+## [0.1.1] - 2024-08-20
 ### :wrench: Chores
 - [`77dd585`](https://github.com/tigattack/dvla-ves-api-py/commit/77dd5855b77fafc47fdef574568c07d128671ea0) - **deps**: update dependency python-dateutil to ^2.9.0-post.0 *(commit by [@renovate[bot]](https://github.com/apps/renovate))*
 - [`32a053d`](https://github.com/tigattack/dvla-ves-api-py/commit/32a053da12092dab42b5f85613008a2594af6259) - downgrade aiohttp min version *(commit by [@tigattack](https://github.com/tigattack))*
