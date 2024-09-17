@@ -3,7 +3,7 @@ requires-python = ">=3.9"
 
 [tool.poetry]
 name = "dvla_vehicle_enquiry_service"
-version = "1.0.1"
+version = "1.0.2"
 description = "Python SDK for DVLA Vehicle Enquiry Service API"
 authors = ["tigattack <10629864+tigattack@users.noreply.github.com>"]
 readme = "README.md"
