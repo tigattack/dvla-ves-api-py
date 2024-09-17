@@ -16,12 +16,17 @@ class VehicleEnquiryError(Exception):
     ):
         # Support both error dict and list[dict] of errors
         if errors:
-            # Convert multiple error details into a string
-            error_messages = " ; ".join(
-                f"[{error.get('status')}] {error.get('title')}: {error.get('detail') or 'No details'}"
-                for error in errors
-            )
-            super().__init__(f"Multiple errors occurred: {error_messages}")
+            if len(errors) == 1:
+                # Handle single error presented as list
+                error = errors[0]
+                super().__init__(f"[{error.get('status')}] {error.get('title')}: {error.get('detail') or 'No details'}")
+            else:
+                # Convert multiple error details into a string
+                error_messages = " ; ".join(
+                    f"[{error.get('status')}] {error.get('title')}: {error.get('detail') or 'No details'}"
+                    for error in errors
+                )
+                super().__init__(f"Multiple errors occurred: {error_messages}")
         else:
             # Handle a single error
             super().__init__(f"[{status}] {title}: {detail or 'No details'}")
