@@ -47,7 +47,9 @@ class VehicleEnquiryAPI:
                 if response_json.get("errors"):
                     raise VehicleEnquiryError(
                         status=response.status,
-                        title="Multiple errors",
+                        title="Multiple errors occurred during API request"
+                        if len(response_json["errors"]) > 1
+                        else "Error occurred during API request",
                         errors=[error for error in response_json.get("errors", [])],
                     )
 

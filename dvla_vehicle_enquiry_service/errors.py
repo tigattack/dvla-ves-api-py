@@ -10,7 +10,7 @@ class VehicleEnquiryError(Exception):
         self,
         title: str,
         status: Optional[int] = None,
-        code: Optional[str] = None,
+        code: Optional[int] = None,
         detail: Optional[str] = None,
         errors: Optional[list[dict[str, Any]]] = None,
     ):
@@ -19,6 +19,15 @@ class VehicleEnquiryError(Exception):
             if len(errors) == 1:
                 # Handle single error presented as list
                 error = errors[0]
+                _status = error.get("status")
+                _code = error.get("code")
+                if isinstance(_status, str):
+                    status = int(_status)
+                if isinstance(_code, str):
+                    code = int(_code)
+
+                title = error.get("title") or title
+                detail = error.get("detail") or detail
                 super().__init__(f"[{error.get('status')}] {error.get('title')}: {error.get('detail') or 'No details'}")
             else:
                 # Convert multiple error details into a string
