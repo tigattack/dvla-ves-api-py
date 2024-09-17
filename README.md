@@ -4,7 +4,7 @@
 ![PyPI - Python Versions](https://img.shields.io/pypi/pyversions/dvla-vehicle-enquiry-service?style=for-the-badge&logo=python&link=https%3A%2F%2Fpypi.org%2Fproject%2Fdvla-vehicle-enquiry-service)
 ![PyPI - Version](https://img.shields.io/pypi/v/dvla-vehicle-enquiry-service?style=for-the-badge&logo=python&link=https%3A%2F%2Fpypi.org%2Fproject%2Fdvla-vehicle-enquiry-service)
 
-`dvla_vehicle_enquiry_service` is a Python SDK that provides a simple interface for interacting with the DVLA (Driver and Vehicle Licensing Agency) Vehicle Enquiry Service API. It allows retrieval of detailed vehicle information based on the registration number, including tax status, MOT status, and more.
+`dvla_vehicle_enquiry_service` is a Python SDK providing a simple interface for interacting with the DVLA (Driver and Vehicle Licensing Agency) Vehicle Enquiry Service API. It allows retrieval of detailed vehicle information based on the registration number, including tax status, MOT status, and more.
 
 ## Installation
 
@@ -38,14 +38,12 @@ To fetch vehicle details using its registration number:
 
 ```python
 import asyncio
-from dvla_vehicle_enquiry_service import ErrorResponse, Vehicle
+from dvla_vehicle_enquiry_service import VehicleResponse, VehicleEnquiryError
 
 async def get_vehicle_details():
-    response = await client.get_vehicle("ABC123")
-    if isinstance(response, ErrorResponse):
-        print(f"Error: {response.errors[0].title}")
-    elif isinstance(response, Vehicle):
-        print(f"Vehicle Make: {response.make}, MOT Status: {response.motStatus.value}")
+    response = await api.get_vehicle("AA19MOT")
+    mot_status = response.motStatus.value if response.motStatus else "Unknown"
+    print(f"Vehicle Make: {response.make}, MOT Status: {mot_status}")
 
 asyncio.run(get_vehicle_details())
 ```
@@ -54,24 +52,24 @@ If the request is successful, this example will print something such as: `Vehicl
 
 ### Error Handling
 
-The SDK returns an `ErrorResponse` object when an error occurs, containing a list of `ErrorDetail` objects with specific error information.
+Errors are raised as `VehicleEnquiryError` exceptions. You can catch and handle these exceptions to access detailed error information.
 
 ```python
-if isinstance(response, ErrorResponse):
-    for error in response.errors:
-        print(f"Error {error.status}: {error.title} - {error.detail}")
+try:
+    response = await client.get_vehicle("ER19NFD")
+except VehicleEnquiryError as e:
+    print(f"Error {e.status}: {e.title} - {e.detail}")
 ```
 
 ## Classes and Data Structures
 
 ### Vehicle Class
 
-- `Vehicle`: Represents detailed information about a vehicle, including tax status, MOT status, make, model, and various other attributes.
+- `VehicleResponse`: Represents detailed information about a vehicle, including tax status, MOT status, make, model, and various other attributes.
 
 ### Error Handling Classes
 
-- `ErrorResponse`: Encapsulates the error response returned by the API.
-- `ErrorDetail`: Provides detailed information about individual errors.
+- `VehicleEnquiryError`: Exception class that encapsulates error information, including status codes and error details.
 
 ### Enum Classes
 
