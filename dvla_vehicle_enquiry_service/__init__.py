@@ -6,9 +6,9 @@ from .errors import VehicleEnquiryError
 from .models import Vehicle
 
 __all__ = [
-    "VehicleEnquiryAPI",
-    "Vehicle",
-    "VehicleEnquiryError",
-    "TaxStatus",
     "MotStatus",
+    "TaxStatus",
+    "Vehicle",
+    "VehicleEnquiryAPI",
+    "VehicleEnquiryError",
 ]
