@@ -3,12 +3,12 @@
 from .client import VehicleEnquiryAPI
 from .enums import MotStatus, TaxStatus
 from .errors import VehicleEnquiryError
-from .models import Vehicle
+from .models import VehicleResponse
 
 __all__ = [
     "MotStatus",
     "TaxStatus",
-    "Vehicle",
     "VehicleEnquiryAPI",
     "VehicleEnquiryError",
+    "VehicleResponse",
 ]

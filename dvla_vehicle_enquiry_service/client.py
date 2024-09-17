@@ -7,7 +7,7 @@ from pydantic import ValidationError
 
 from .api import BASE_URLS, VEHICLE_BY_REGISTRATION
 from .errors import VehicleEnquiryError
-from .models import Vehicle
+from .models import VehicleResponse
 
 
 class VehicleEnquiryAPI:
@@ -57,7 +57,7 @@ class VehicleEnquiryAPI:
 
     async def get_vehicle(
         self, registration_number: str, correlation_id: Optional[str] = None
-    ) -> Vehicle:
+    ) -> VehicleResponse:
         """Fetches vehicle details."""
         data = {"registrationNumber": registration_number}
         response = await self._make_request(
@@ -65,7 +65,7 @@ class VehicleEnquiryAPI:
         )
 
         try:
-            return Vehicle(**response)
+            return VehicleResponse(**response)
         except ValidationError as e:
             raise VehicleEnquiryError(
                 title="Invalid response format", detail=str(e)

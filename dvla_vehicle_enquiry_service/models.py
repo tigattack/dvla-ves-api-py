@@ -10,7 +10,7 @@ from .enums import MotStatus, TaxStatus
 
 
 @dataclass
-class Vehicle:
+class VehicleResponse:
     """Represents a vehicle's details as retrieved from the DVLA Vehicle Enquiry Service API.
 
     Attributes:
