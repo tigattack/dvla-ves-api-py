@@ -1,10 +1,6 @@
 [project]
 requires-python = ">=3.9"
 
-[project.urls]
-Repository = "https://github.com/tigattack/dvla-vehicle-enquiry-service"
-Issues = "https://github.com/tigattack/dvla-vehicle-enquiry-service/issues"
-
 [tool.poetry]
 name = "dvla_vehicle_enquiry_service"
 version = "1.0.0"
@@ -15,6 +11,10 @@ license = "MIT"
 packages = [
     {include = "dvla_vehicle_enquiry_service"}
 ]
+
+[tool.poetry.urls]
+Repository = "https://github.com/tigattack/dvla-vehicle-enquiry-service"
+Issues = "https://github.com/tigattack/dvla-vehicle-enquiry-service/issues"
 
 [tool.poetry.dependencies]
 python = "^3.9"
