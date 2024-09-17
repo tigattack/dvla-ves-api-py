@@ -13,8 +13,8 @@ packages = [
 ]
 
 [tool.poetry.urls]
-Repository = "https://github.com/tigattack/dvla-vehicle-enquiry-service"
-Issues = "https://github.com/tigattack/dvla-vehicle-enquiry-service/issues"
+Repository = "https://github.com/tigattack/dvla-ves-api-py"
+Issues = "https://github.com/tigattack/dvla-ves-api-py/issues"
 
 [tool.poetry.dependencies]
 python = "^3.9"
