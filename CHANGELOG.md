@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2024-09-17
+### :memo: Documentation Changes
+- [`28cc2c0`](https://github.com/tigattack/dvla-ves-api-py/commit/28cc2c069de0cc955b962f06052dfba128762faf) - **changelog**: add historic changes *(commit by [@tigattack](https://github.com/tigattack))*
+
+### :wrench: Chores
+- [`eaede01`](https://github.com/tigattack/dvla-ves-api-py/commit/eaede01c4345a0a206110bf2d7fa2768c12a72a5) - **renovate**: use `chore` sem-commit type *(commit by [@tigattack](https://github.com/tigattack))*
+- [`f4522ac`](https://github.com/tigattack/dvla-ves-api-py/commit/f4522acc142f329d1a8b9ae9d35a429787b6d7d3) - downgrade aiohttp min version *(commit by [@tigattack](https://github.com/tigattack))*
+- [`9bb0496`](https://github.com/tigattack/dvla-ves-api-py/commit/9bb0496b289d0cc526517e394716529efcbe0bd3) - add changelog URL to project *(commit by [@tigattack](https://github.com/tigattack))*
+- [`8600803`](https://github.com/tigattack/dvla-ves-api-py/commit/8600803d0792477207c582d5c8aa6363d35bb144) - bump version to 1.0.3 *(commit by [@tigattack](https://github.com/tigattack))*
+
+
 ## [1.0.2] - 2024-09-17
 ### :wrench: Chores
 - [`2e5b35b`](https://github.com/tigattack/dvla-ves-api-py/commit/2e5b35bc73aa00ae58ea2bb2f85269b618088557) - fix project URLs *(commit by [@tigattack](https://github.com/tigattack))*
@@ -65,3 +76,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.0]: https://github.com/tigattack/dvla-ves-api-py/compare/0.1.1...1.0.0
 [1.0.1]: https://github.com/tigattack/dvla-ves-api-py/compare/1.0.0...1.0.1
 [1.0.2]: https://github.com/tigattack/dvla-ves-api-py/compare/1.0.1...1.0.2
+[1.0.3]: https://github.com/tigattack/dvla-ves-api-py/compare/1.0.2...1.0.3
