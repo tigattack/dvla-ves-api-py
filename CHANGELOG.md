@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2024-09-17
+### :memo: Documentation Changes
+- [`36fb54a`](https://github.com/tigattack/dvla-ves-api-py/commit/36fb54a0c936bc709fbce9e644493108254d7271) - update CHANGELOG.md for 1.0.3 *(commit by [@tigattack](https://github.com/tigattack))*
+- [`ad6036c`](https://github.com/tigattack/dvla-ves-api-py/commit/ad6036c5e10ff568eb76a86b1c00fc8217ed4515) - **changelog**: fix date on old release *(commit by [@tigattack](https://github.com/tigattack))*
+
+### :wrench: Chores
+- [`976f9a3`](https://github.com/tigattack/dvla-ves-api-py/commit/976f9a37ade8c85f507fd736866827642dc29d64) - **deps**: downgrade yarl, idna, multidict, *(commit by [@tigattack](https://github.com/tigattack))*
+- [`0287bde`](https://github.com/tigattack/dvla-ves-api-py/commit/0287bde6226d522ee78f4950248829444536c169) - bump version to 1.0.4 *(commit by [@tigattack](https://github.com/tigattack))*
+
+
 ## [1.0.3] - 2024-09-17
 ### :memo: Documentation Changes
 - [`28cc2c0`](https://github.com/tigattack/dvla-ves-api-py/commit/28cc2c069de0cc955b962f06052dfba128762faf) - **changelog**: add historic changes *(commit by [@tigattack](https://github.com/tigattack))*
@@ -77,3 +87,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.1]: https://github.com/tigattack/dvla-ves-api-py/compare/1.0.0...1.0.1
 [1.0.2]: https://github.com/tigattack/dvla-ves-api-py/compare/1.0.1...1.0.2
 [1.0.3]: https://github.com/tigattack/dvla-ves-api-py/compare/1.0.2...1.0.3
+[1.0.4]: https://github.com/tigattack/dvla-ves-api-py/compare/1.0.3...1.0.4
