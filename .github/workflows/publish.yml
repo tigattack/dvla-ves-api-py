@@ -22,7 +22,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Parse tags
+        id: parse_tags
+        run: |
+          git fetch -a
+          echo "tag_count=$(git tag -l | wc -l)" >> $GITHUB_OUTPUT
+
       - name: Update CHANGELOG
+        continue-on-error: ${{ steps.parse_tags.outputs.tag_count == '1' }}
         id: changelog
         uses: requarks/changelog-action@v1
         with:
