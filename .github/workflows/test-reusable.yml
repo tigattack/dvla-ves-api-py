@@ -9,8 +9,7 @@ on:
         required: true
         type: string
       tests_path:
-        description: 'The path to the directory containing pytest tests'
-        required: true
+        description: 'The path to the directory containing pytest tests. Tests will be skipped if this is empty.'
         type: string
 
 jobs:
@@ -67,6 +66,7 @@ jobs:
           cache: "poetry"
 
       - name: Test with pytest
+        if: ${{ inputs.tests_path != '' }}
         run: |
           poetry install --with dev
           poetry run pytest ${{ inputs.tests_path }}
